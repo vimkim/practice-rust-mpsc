@@ -50,13 +50,15 @@ fn spawn_consumer(
                 }
             }
         };
-
         let result = num * num;
         {
             let mut stats = stats.lock().unwrap();
             stats.consumed += 1;
             println!("Consumer {}: Processed {} -> {}", id, num, result);
         }
+
+        // Add 2-second delay after processing
+        thread::sleep(Duration::from_secs(2));
     })
 }
 
@@ -111,8 +113,8 @@ fn main() {
 
     // 10초 동안 실행
     let start = Instant::now();
-    while start.elapsed() < Duration::from_secs(10) {
-        thread::sleep(Duration::from_millis(100));
+    while start.elapsed() < Duration::from_secs(20) {
+        thread::sleep(Duration::from_millis(1000));
     }
 
     println!("\nTime elapsed, gathering final statistics");
