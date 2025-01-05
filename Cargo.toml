@@ -5,3 +5,5 @@ edition = "2021"
 
 [dependencies]
 rand = "0.8.5"
+tracing = { version = "0.1.41", features = ["attributes"] }
+tracing-subscriber = { version = "0.3.19", featuaers = ["fmt"] }
